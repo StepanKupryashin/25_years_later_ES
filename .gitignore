@@ -1,4 +1,6 @@
 *.rpyc
 *.rar
 *.py
-
+*take.rpy
+*replace.rpy
+*.gitignore
