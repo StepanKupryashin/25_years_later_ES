@@ -2,7 +2,7 @@
 init python:
     mods["tfyl_index"] =  u"{font=fonts/timesi.ttf}{size=40}25 Лет Спустя{/size}{/font}"
 
-    tfyl_version = "0.21.04.10" # Версии менять тут
+    tfyl_version = "0.21.04.15" # Версии менять тут
     class tfyl_FunctionCallback(Action):
         ''' этот класс используется для экрана сохранений '''
         def __init__(self,function,*arguments):
@@ -220,3 +220,7 @@ init:
         linear 0.1 pos (6, -5)
         linear 0.1 pos (0, 0)
         repeat
+init python:
+
+    if persistent.tfyl_read_chapter == None:
+        persistent.tfyl_read_chapter = [False, False, False, False, False, False, False]
