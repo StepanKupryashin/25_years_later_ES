@@ -118,8 +118,6 @@ init:
     
 
     screen tfyl_game_menu_selector:
-        key 'game_menu':
-            action ShowMenu('tfyl_game_menu_selector')
         tag menu
         modal True
 
