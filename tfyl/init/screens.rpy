@@ -17,7 +17,7 @@ init:
             ease .75 zoom 1.2 alpha 1.0
 
     screen tfyl_menu_bg():
-        add im.Blur("mods/tfyl/gui/main_menu.webp", 1.5):
+        add im.Blur("mods/tfyl/gui/main_menu.png", 1.5):
             at transform:
                 zoom 1.2 xalign .4 yalign .4
                 parallel:
@@ -95,21 +95,21 @@ init:
         textbutton 'Закрыть' action (Hide('tfyl_select_chapter', Dissolve(1.0)), Return()) style 'tfyl_button' text_style 'tfyl_button_text' xalign 0.5 at tfyl_button_hover
         hbox spacing 40 align(0.5,0.5):
             vbox spacing 10:
-                imagebutton  idle im.Scale('mods/tfyl/images/bg/tfyl_gates.webp', 336, 196) at tfyl_button_hover:
+                imagebutton  idle im.Scale('mods/tfyl/images/bg/tfyl_gates.jpg', 336, 196) at tfyl_button_hover:
                     if persistent.tfyl_read_chapter[0]:
                         action Start('tfyl_gates')
                     else:
                         action NullAction()
                 text 'Глава 1. Искра'
             vbox spacing 10:
-                imagebutton  idle im.Scale('mods/tfyl/images/bg/ext_tfyl_musclub.webp', 336, 196) at tfyl_button_hover:
+                imagebutton  idle im.Scale('mods/tfyl/images/bg/ext_tfyl_musclub.png', 336, 196) at tfyl_button_hover:
                     if persistent.tfyl_read_chapter[1]:
                         action Start('tfyl_stage')
                     else:
                         action NullAction()
                 text '2 глава. Струны и косы'
             vbox spacing 10:
-                imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_polyana.webp', 336, 196) at tfyl_button_hover:
+                imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_polyana.png', 336, 196) at tfyl_button_hover:
                     if persistent.tfyl_read_chapter[2]:
                         action Start('tfyl_polyana')
                     else:
@@ -118,15 +118,13 @@ init:
 
 
     screen tfyl_game_menu_selector:
-        key 'game_menu':
-            action ShowMenu('tfyl_game_menu_selector')
         tag menu
         modal True
 
         style_prefix "tfyl"
 
         button style "blank_button" xpos 0 ypos 0 xfill True yfill True action Return()
-        add "mods/tfyl/gui/game_menu.webp" align (.5, .5)
+        add "mods/tfyl/gui/game_menu.png" align (.5, .5)
 
         vbox:
             spacing 5
@@ -187,19 +185,19 @@ init:
 
             if persistent.font_size == "large":
 
-                imagebutton auto "mods/tfyl/gui/dialogue_box/backward_%s.webp" xpos 38 ypos 924 action ShowMenu("text_history")
+                imagebutton auto "mods/tfyl/gui/dialogue_box/backward_%s.png" xpos 38 ypos 924 action ShowMenu("text_history")
 
-                add "mods/tfyl/gui/dialogue_box/dialogue_box_large.webp" xpos 174 ypos 866
+                add "mods/tfyl/gui/dialogue_box/dialogue_box_large.png" xpos 174 ypos 866
 
-                imagebutton auto "mods/tfyl/gui/dialogue_box/hide_%s.webp" xpos 1508 ypos 883 action HideInterface()
-                imagebutton auto "mods/tfyl/gui/dialogue_box/save_%s.webp" xpos 1567 ypos 883 action ShowMenu('save')
-                imagebutton auto "mods/tfyl/gui/dialogue_box/menu_%s.webp" xpos 1625 ypos 883 action ShowMenu('game_menu_selector')
-                imagebutton auto "mods/tfyl/gui/dialogue_box/load_%s.webp" xpos 1682 ypos 883 action ShowMenu('load')
+                imagebutton auto "mods/tfyl/gui/dialogue_box/hide_%s.png" xpos 1508 ypos 883 action HideInterface()
+                imagebutton auto "mods/tfyl/gui/dialogue_box/save_%s.png" xpos 1567 ypos 883 action ShowMenu('save')
+                imagebutton auto "mods/tfyl/gui/dialogue_box/menu_%s.png" xpos 1625 ypos 883 action ShowMenu('game_menu_selector')
+                imagebutton auto "mods/tfyl/gui/dialogue_box/load_%s.png" xpos 1682 ypos 883 action ShowMenu('load')
 
                 if not config.skipping:
-                    imagebutton auto "mods/tfyl/gui/dialogue_box/forward_%s.webp" xpos 1735 ypos 924 action Skip()
+                    imagebutton auto "mods/tfyl/gui/dialogue_box/forward_%s.png" xpos 1735 ypos 924 action Skip()
                 else:
-                    imagebutton auto "mods/tfyl/gui/dialogue_box/fast_forward_%s.webp" xpos 1735 ypos 924 action Skip()
+                    imagebutton auto "mods/tfyl/gui/dialogue_box/fast_forward_%s.png" xpos 1735 ypos 924 action Skip()
 
                 text what id "what" xpos 194 ypos 914 xmaximum 1541 size 35 line_spacing 1 font 'mods/tfyl/fonts/Caveat.ttf'
                 if who:
@@ -207,19 +205,19 @@ init:
 
             elif persistent.font_size == "small":
 
-                imagebutton auto "mods/tfyl/gui/dialogue_box/backward_%s.webp" xpos 38 ypos 949 action ShowMenu("text_history")
+                imagebutton auto "mods/tfyl/gui/dialogue_box/backward_%s.png" xpos 38 ypos 949 action ShowMenu("text_history")
 
-                add "mods/tfyl/gui/dialogue_box/dialogue_box.webp" xpos 174 ypos 916
+                add "mods/tfyl/gui/dialogue_box/dialogue_box.png" xpos 174 ypos 916
 
-                imagebutton auto "mods/tfyl/gui/dialogue_box/hide_%s.webp" xpos 1508 ypos 933 action HideInterface()
-                imagebutton auto "mods/tfyl/gui/dialogue_box/save_%s.webp" xpos 1567 ypos 933 action ShowMenu('save')
-                imagebutton auto "mods/tfyl/gui/dialogue_box/menu_%s.webp" xpos 1625 ypos 933 action ShowMenu('game_menu_selector')
-                imagebutton auto "mods/tfyl/gui/dialogue_box/load_%s.webp" xpos 1682 ypos 933 action ShowMenu('load')
+                imagebutton auto "mods/tfyl/gui/dialogue_box/hide_%s.png" xpos 1508 ypos 933 action HideInterface()
+                imagebutton auto "mods/tfyl/gui/dialogue_box/save_%s.png" xpos 1567 ypos 933 action ShowMenu('save')
+                imagebutton auto "mods/tfyl/gui/dialogue_box/menu_%s.png" xpos 1625 ypos 933 action ShowMenu('game_menu_selector')
+                imagebutton auto "mods/tfyl/gui/dialogue_box/load_%s.png" xpos 1682 ypos 933 action ShowMenu('load')
 
                 if not config.skipping:
-                    imagebutton auto "mods/tfyl/gui/dialogue_box/forward_%s.webp" xpos 1735 ypos 949 action Skip()
+                    imagebutton auto "mods/tfyl/gui/dialogue_box/forward_%s.png" xpos 1735 ypos 949 action Skip()
                 else:
-                    imagebutton auto "mods/tfyl/gui/dialogue_box/fast_forward_%s.webp" xpos 1735 ypos 949 action Skip()
+                    imagebutton auto "mods/tfyl/gui/dialogue_box/fast_forward_%s.png" xpos 1735 ypos 949 action Skip()
 
                 text what id "what" xpos 194 ypos 964 xmaximum 1541 size 28 line_spacing 2 font 'mods/tfyl/fonts/Caveat.ttf'
                 if who:
@@ -386,9 +384,9 @@ init:
 
 
     style tfyl_file_slots_button is default:
-        background "mods/tfyl/gui/file_slots/file_slots_idle.webp"
-        hover_background "mods/tfyl/gui/file_slots/file_slots_hover.webp"
-        selected_background "mods/tfyl/gui/file_slots/file_slots_selected.webp"
+        background "mods/tfyl/gui/file_slots/file_slots_idle.png"
+        hover_background "mods/tfyl/gui/file_slots/file_slots_hover.png"
+        selected_background "mods/tfyl/gui/file_slots/file_slots_selected.png"
     transform tfyl_on_show_authors_menu:
         on hide:
             xalign 0.5
@@ -439,9 +437,9 @@ init:
             text "Скорость текста" style 'tfyl_button' size 45 xalign 0.5
             null height 10
             bar value Preference("text speed") xalign 0.5 maximum (442,42):
-                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.webp', 442, 42)
-                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.webp', 442, 42)
-                thumb im.Scale('mods/tfyl/gui/preferences/thumb.webp', 15, 46)
+                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
+                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
+                thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
         vbox align (0.8,0.5):
             text "Автопереход" style 'tfyl_button'  size 45 xalign 0.5
             null height 10
@@ -451,30 +449,30 @@ init:
                 textbutton "Выключить" text_size 35 at tfyl_button_hover:
                     action [Preference("auto-forward time", 0),Preference("auto-forward after click","disable"),SelectedIf(preferences.afm_time == 0 or preferences.afm_after_click == "disable")]
             bar value Preference("auto-forward time") xalign 0.5 maximum (442,42):
-                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.webp', 442, 42)
-                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.webp', 442, 42)
-                thumb im.Scale('mods/tfyl/gui/preferences/thumb.webp', 15, 46)
+                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
+                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
+                thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
             text "Музыка" style 'tfyl_button' size 45 xalign 0.5
             null height 10
             bar value Preference("music volume") xalign 0.5 maximum (442,42):
-                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.webp', 442, 42)
-                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.webp', 442, 42)
-                thumb im.Scale('mods/tfyl/gui/preferences/thumb.webp', 15, 46)
+                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
+                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
+                thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
             text "Звуки" style 'tfyl_button' size 45 xalign 0.5
             null height 10
             bar value Preference("sound volume") xalign 0.5 maximum (442,42):
-                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.webp', 442, 42)
-                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.webp', 442, 42)
-                thumb im.Scale('mods/tfyl/gui/preferences/thumb.webp', 15, 46)
+                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
+                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
+                thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
             text "Эмбиент" style 'tfyl_button' size 45 xalign 0.5
             null height 10
             bar value Preference("voice volume") xalign 0.5 maximum (442,42):
-                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.webp', 442, 42)
-                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.webp', 442, 42)
-                thumb im.Scale('mods/tfyl/gui/preferences/thumb.webp', 15, 46)
+                right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
+                left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
+                thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
             textbutton "Без звука" text_size 35 xalign 0.5 at tfyl_button_hover:
                 action Preference("all mute", "toggle")
@@ -498,7 +496,7 @@ init:
 
     screen tfyl_choice(items, *args):
 
-        $ imagebutton_sprites = {"?": "mods/tfyl/gui/interactive/q_%s.webp", "!": "mods/tfyl/gui/interactive/em_%s.webp", "me": "mods/tfyl/gui/interactive/message_%s.webp", "ar": "mods/tfyl/gui/interactive/ar_%s.webp"}
+        $ imagebutton_sprites = {"?": "mods/tfyl/gui/interactive/q_%s.png", "!": "mods/tfyl/gui/interactive/em_%s.png", "me": "mods/tfyl/gui/interactive/message_%s.png", "ar": "mods/tfyl/gui/interactive/ar_%s.png"}
 
         for caption, action, chosen in items:
 
@@ -524,7 +522,7 @@ init:
 
     screen tfyl_yesno_prompt:
         tag menu modal True
-        add 'mods/tfyl/gui/yes_no/yesno_promt.webp'
+        add 'mods/tfyl/gui/yes_no/yesno_promt.png'
         text _(message) text_align 0.5 yalign 0.46 xalign 0.5 color "#FFFFFF" font 'mods/tfyl/fonts/Caveat.ttf' size 25
         textbutton translation_new["Yes"] text_size 60 style "tfyl_button" text_style "tfyl_button"  yalign 0.65 xalign 0.3 action yes_action at tfyl_button_hover
         textbutton translation_new["No"] text_size 60 style "tfyl_button" text_style "tfyl_button"  yalign 0.65 xalign 0.7 action Return() at tfyl_button_hover
@@ -540,7 +538,7 @@ init:
             for ch in images:
                 add im.MatrixColor(ch, im.matrix.desaturate())
 
-        add "mods/tfyl/gui/misc/window.webp"
+        add "mods/tfyl/gui/misc/window.png"
 
         frame:
             background None#Solid("944")
@@ -577,7 +575,7 @@ init:
 
     screen tfyl_old_filter():
 
-        add "mods/tfyl/gui/misc/window.webp"
+        add "mods/tfyl/gui/misc/window.png"
 
     screen tfyl_mail_in_hand(txt=None, remove=False, sender=None):
 
@@ -596,17 +594,14 @@ init:
 
 
             if txt:
-                add "mods/tfyl/gui/mail/open.webp"
+                add "mods/tfyl/gui/mail/open.png"
 
                 text txt font "mods/tfyl/fonts/mail_font.ttf" color "336" line_spacing -7 line_leading 0 size 32 xsize .3 ysize .7 xpos .27 ypos .1 anchor (.0, .0)
 
                 if sender:
                     text sender font "mods/tfyl/fonts/mail_font.ttf" color "336" size 30 xpos .45 ypos .87
             else:
-                add "mods/tfyl/gui/mail/inside.webp"
-
-
-
+                add "mods/tfyl/gui/mail/inside.png"
 
 
 

@@ -27,6 +27,10 @@ init python:
             self.__dict__.update(self.is_persistent)
             self.timeofday = "day"
 
+            self.mails = {} #{"Письмо №"+str(i): ("nya "+str(i),) for i in range(10)}
+
+            #self.add_mail("Интро", "nya 1", "nya 2")
+
         def __setattr__(self, key, value):
             self.__dict__[key] = value
             if key in self.is_persistent:
@@ -66,6 +70,12 @@ init python:
             night_time()
             persistent.sprite_time = "night"
             self.timeofday = "night"
+
+        def add_mail(self, name, *pages):
+            
+            self.mails[name] = pages
+
+            return pages
 
 
     class BooleanList(object):
