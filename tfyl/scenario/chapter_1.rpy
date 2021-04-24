@@ -7,7 +7,7 @@ label tfyl_gates:
     $ renpy.pause (6)
     hide screen tfyl_backdrop
 
-
+    show screen tfyl_diary
     play music dark_music_25 fadein 3
     $ renpy.pause (1)
     window show dissolve

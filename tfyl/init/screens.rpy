@@ -96,25 +96,29 @@ init:
         hbox spacing 40 align(0.5,0.5):
             vbox spacing 10:
                 imagebutton  idle im.Scale('mods/tfyl/images/bg/tfyl_gates.jpg', 336, 196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[0]:
-                        action Start('tfyl_gates')
-                    else:
-                        action NullAction()
+                    action Start('tfyl_gates')
                 text 'Глава 1. Искра'
             vbox spacing 10:
                 imagebutton  idle im.Scale('mods/tfyl/images/bg/ext_tfyl_musclub.png', 336, 196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[1]:
+                    if persistent.tfyl_read_chapter[0]:
                         action Start('tfyl_stage')
                     else:
                         action NullAction()
                 text '2 глава. Струны и косы'
             vbox spacing 10:
                 imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_polyana.png', 336, 196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[2]:
+                    if persistent.tfyl_read_chapter[1]:
                         action Start('tfyl_polyana')
                     else:
                         action NullAction()
                 text 'Глава 3. Бесконечная игра'
+            vbox spacing 10:
+                imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_boat_stantion.png', 336,196) at tfyl_button_hover:
+                    if persistent.tfyl_read_chapter[2]:
+                        action Start('tfyl_square')
+                    else:
+                        action NullAction()
+                text 'Глава 4. Экспедиция в один конец'
 
 
     screen tfyl_game_menu_selector:

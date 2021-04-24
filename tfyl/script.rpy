@@ -4,7 +4,6 @@ label tfyl_start:
     $ tfyl = ModeStore()
     $ tfyl.day_time()
 
-    show screen tfyl_diary # подвинуть на первую главу
 
     scene bg black
     with fade2
