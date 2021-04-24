@@ -72,7 +72,7 @@ init python:
             self.timeofday = "night"
 
         def add_mail(self, name, *pages):
-            
+
             self.mails[name] = pages
 
             return pages
@@ -230,6 +230,9 @@ init:
         linear 0.1 pos (6, -5)
         linear 0.1 pos (0, 0)
         repeat
+
+    default tfyl = None # В теории пофиксит баг с тем что пропадает значение.
+
 init python:
 
     if persistent.tfyl_read_chapter == None:
