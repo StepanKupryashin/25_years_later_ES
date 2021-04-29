@@ -1,4 +1,21 @@
 # -*- coding: utf-8 -*-
+label tfyl_chapter_1:
+
+    stop music fadeout 3
+
+    call .loads
+
+    show black
+
+    jump tfyl_gates
+
+label .loads: # Все необходимое для первой главы
+
+    $ tfyl = ModeStore()
+    show screen tfyl_diary
+
+    return
+
 label tfyl_gates:
 
     show screen tfyl_backdrop(1, "Искра", "images/bg/ext_clubs_day.jpg", im.Composite((900,1080), (0,0), "images/sprites/normal/el/el_1_body.png",(0,0), "images/sprites/normal/el/el_1_pioneer.png",(0,0), "images/sprites/normal/el/el_1_normal.png"), im.Composite((900,1080), (0,0), "images/sprites/normal/sh/sh_3_body.png",(0,0), "images/sprites/normal/sh/sh_3_normal.png",(0,0), "images/sprites/normal/sh/sh_3_normal.png") ) with fade
@@ -7,10 +24,10 @@ label tfyl_gates:
     $ renpy.pause (6)
     hide screen tfyl_backdrop
 
-    show screen tfyl_diary
     play music dark_music_25 fadein 3
     $ renpy.pause (1)
     window show dissolve
+
 
 
     "Никогда бы не подумал что вернусь сюда.{w} Особенно с такой целью.{w} В голове ещё не могли уложиться те письма, а буря старых воспоминаний сильно нагружала голову."
@@ -512,7 +529,6 @@ label .search:
             scene black
             with dissolve
             $ renpy.pause (3)
-            $ persistent.tfyl_read_chapter[0] = True
             jump tfyl_stage
 
     jump .search

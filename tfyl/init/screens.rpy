@@ -93,33 +93,116 @@ init:
         style_prefix 'tfyl'
         use tfyl_menu_bg
         textbutton 'Закрыть' action (Hide('tfyl_select_chapter', Dissolve(1.0)), Return()) style 'tfyl_button' text_style 'tfyl_button_text' xalign 0.5 at tfyl_button_hover
-        hbox spacing 40 align(0.5,0.5):
-            vbox spacing 10:
-                imagebutton  idle im.Scale('mods/tfyl/images/bg/tfyl_gates.jpg', 336, 196) at tfyl_button_hover:
-                    action Start('tfyl_gates')
-                text 'Глава 1. Искра'
-            vbox spacing 10:
-                imagebutton  idle im.Scale('mods/tfyl/images/bg/ext_tfyl_musclub.png', 336, 196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[0]:
-                        action Start('tfyl_stage')
-                    else:
-                        action NullAction()
-                text '2 глава. Струны и косы'
-            vbox spacing 10:
-                imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_polyana.png', 336, 196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[1]:
-                        action Start('tfyl_polyana')
-                    else:
-                        action NullAction()
-                text 'Глава 3. Бесконечная игра'
-            vbox spacing 10:
-                imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_boat_stantion.png', 336,196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[2]:
-                        action Start('tfyl_square')
-                    else:
-                        action NullAction()
-                text 'Глава 4. Экспедиция в один конец'
+        # hbox spacing 40 align(0.5,0.5):
+        #     vbox spacing 10:
+        #         imagebutton  idle im.Scale('mods/tfyl/images/bg/tfyl_gates.jpg', 336, 196) at tfyl_button_hover:
+        #             action Start('tfyl_gates')
+        #         text 'Глава 1. Искра'
+        #     vbox spacing 10:
+        #         imagebutton  idle im.Scale('mods/tfyl/images/bg/ext_tfyl_musclub.png', 336, 196) at tfyl_button_hover:
+        #             if persistent.tfyl_read_chapter[0]:
+        #                 action Start('tfyl_stage')
+        #             else:
+        #                 action NullAction()
+        #         text '2 глава. Струны и косы'
+        #     vbox spacing 10:
+        #         imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_polyana.png', 336, 196) at tfyl_button_hover:
+        #             if persistent.tfyl_read_chapter[1]:
+        #                 action Start('tfyl_polyana')
+        #             else:
+        #                 action NullAction()
+        #         text 'Глава 3. Бесконечная игра'
+        #     vbox spacing 10:
+        #         imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_boat_stantion.png', 336,196) at tfyl_button_hover:
+        #             if persistent.tfyl_read_chapter[2]:
+        #                 action Start('tfyl_square')
+        #             else:
+        #                 action NullAction()
+        #         text 'Глава 4. Экспедиция в один конец'
 
+        vbox:
+            align (.5, .5)
+
+            spacing 40
+
+            hbox: # Все главы на одной строке не смогут поместится
+
+                spacing 40
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_gates.jpg", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_1", "tfyl_gates")
+
+                    text "Глава 1: "+("Искра" if renpy.seen_label("tfyl_gates") else "???")
+
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/ext_tfyl_musclub.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_2", "tfyl_stage")
+
+                    text "Глава 2: "+("Струны и косы" if renpy.seen_label("tfyl_stage") else "???")
+
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_polyana.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_3", "tfyl_polyana")
+
+                    text "Глава 3: "+("Бесконечная игра" if renpy.seen_label("tfyl_polyana") else "???")
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_boat_stantion.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_4", "tfyl_polyana")
+
+                    text "Глава 4: "+("Экспедиция в один конец" if renpy.seen_label("tfyl_polyana") else "???")
+
+            hbox:
+                spacing 40
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_house_of_mt.jpg", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_5", "tfyl_dining_hall")
+
+                    text "Глава 5: "+("Друг или враг?" if renpy.seen_label("tfyl_dining_hall") else "???")
 
     screen tfyl_game_menu_selector:
         tag menu
@@ -189,7 +272,7 @@ init:
 
             if persistent.font_size == "large":
 
-                imagebutton auto "mods/tfyl/gui/dialogue_box/backward_%s.png" xpos 38 ypos 924 action ShowMenu("text_history")
+                imagebutton auto "mods/tfyl/gui/dialogue_box/backward_%s.png" xpos 38 ypos 924 action ShowMenu("text_history") #TODO Давай все такие подвинем эти кнопки повыше?
 
                 add "mods/tfyl/gui/dialogue_box/dialogue_box_large.png" xpos 174 ypos 866
 
@@ -616,7 +699,7 @@ init: # Нужно запихнуть в screens
 
         modal True
 
-        default page = 0
+        default page = -1 if remove else 0
         default maxpage = 0
 
         if mail:
@@ -741,7 +824,7 @@ label tfyl_index:
     window hide
 
     $ tfyl__screens_save_act()
-
+    
 
     return
     # call screen tfyl_to_main_menu

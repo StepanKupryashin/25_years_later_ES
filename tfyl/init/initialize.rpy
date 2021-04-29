@@ -2,14 +2,42 @@
 init python:
     mods["tfyl_index"] =  u"{font=fonts/timesi.ttf}{size=40}25 Лет Спустя{/size}{/font}"
 
-    tfyl_version = "0.21.04.15" # Версии менять тут
-    class tfyl_FunctionCallback(Action):
+    tfyl_version = "0.21.04.28" # Версии менять тут
+    class tfyl_FunctionCallback(Action): # А чем оно отличается от стандартной Function?
         ''' этот класс используется для экрана сохранений '''
         def __init__(self,function,*arguments):
             self.function=function
             self.arguments=arguments
         def __call__(self):
             return self.function(self.arguments)
+
+    class tfyl_LoadChapter(Action):
+        """ Этот класс используется для загрузки
+            глав, и определению были ли прочитаны прошлые главы.
+        """
+        def __init__(self, chapter, label):
+            """
+            chapter - название главы инициализации
+            label - название первого лейбла главы
+            """
+            self.chapter = chapter
+            self.label = label
+
+        def __eq__(self, other):
+
+            if other.__class__ != tfyl_LoadChapter:
+                return False
+
+            return self.chapter == other.chapter
+
+        def get_sensitive(self):
+
+            return renpy.seen_label(self.label)
+
+        def __call__(self):
+
+            renpy.jump(self.chapter)
+
     class ModeStore(object):
         """ Класс для хранения данных мода """
 
@@ -27,9 +55,7 @@ init python:
             self.__dict__.update(self.is_persistent)
             self.timeofday = "day"
 
-            self.mails = {} #{"Письмо №"+str(i): ("nya "+str(i),) for i in range(10)}
-
-            #self.add_mail("Интро", "nya 1", "nya 2")
+            self.mails = {}
 
         def __setattr__(self, key, value):
             self.__dict__[key] = value
@@ -76,7 +102,6 @@ init python:
             self.mails[name] = pages
 
             return pages
-
 
     class BooleanList(object):
 
@@ -230,10 +255,7 @@ init:
         linear 0.1 pos (6, -5)
         linear 0.1 pos (0, 0)
         repeat
-
-    default tfyl = None # В теории пофиксит баг с тем что пропадает значение.
-
-init python:
-
-    if persistent.tfyl_read_chapter == None:
-        persistent.tfyl_read_chapter = [False, False, False, False, False, False, False]
+# init python:
+#
+#     if persistent.tfyl_read_chapter == None:
+#         persistent.tfyl_read_chapter = [False, False, False, False, False, False, False]
