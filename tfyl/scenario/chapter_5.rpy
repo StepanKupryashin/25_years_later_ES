@@ -197,6 +197,8 @@ label .search:
             pause 1
             window show dissolve
 
+            $tfyl.night_time()
+
             dv "Эй, балда, ты слушаешь?"
 
             "Семён показал подруге один лишь палец и она умолкла.{w} Кто-то шагал в сторону площади, проходя через кусты, где прятались два зайца." # П.М # Есть целых два варианта, какой именно это был палец :)
@@ -313,6 +315,7 @@ label .search:
             "Добрались.{w} Это была задняя часть харчевни.{w} Алиса хорошо продумала план, здесь меньшая вероятность, что нас заметят."
 
             show dv smile pioneer2 at cleft with dissolve
+            play music music_list["you_lost_me"] fadein 3
 
             dv "Семён, я держала это до последнего"
 
@@ -324,7 +327,7 @@ label .search:
 
             "Алиса облокотилась о стену и продолжила свою мысль, будто не замечая моего возмущения."
 
-            dv "Ульяна работала над ключами, я работала над замком и форточкой, что же сделал мой любимый Семён?"
+            dv "Ульяна работала над ключами, я работала над замком и форточкой{w}, а что же сделал мой любимый Семён?"
 
             hide dv with dissolve
 
@@ -344,13 +347,19 @@ label .search:
 
             me "Какого цвета ковер, {i}Ульяна{/i}?"
 
+            show us calml sport at cright with dissolve
+
             us "Эм, ковер?{w} Не помню я никакого ковра!{w} Я же не смотрела на него и было темно, очень темно!"
 
             "Попалась!{w} Не могло быть очень темно, сегодня луна почти полная, без облаков, так или иначе сияние бы попадало в эту комнатку."
 
             "Я-то помню, я ведь жил там когда-то!"
 
+            show dv normal pioneer2 at left with dissolve
+
             dv "Семён, хватит херней страдать.{w} Причем тут ковры?{w} Залезай, я подсажу."
+
+            show us dontlike sport at cright with dissolve
 
             us "Да!{w} Мы тратим время, совсем с ума сошел?!"
 
@@ -358,15 +367,27 @@ label .search:
 
             me "Как ты попала в домик?"
 
+            show us fear sport at cright with hpunch
+
             "Ульяна замешкалась, а Алиса, понимая к чему все идет, мигом подошла ко мне."
 
+            window hide dissolve
+
+            pause 1
+
+            show dv angry pioneer2 close at cleft with dissolve
+
+            window show dissolve
+
             dv "Ты чего тут зубы заговариваешь?{w} Что ты к ней пристал?!"
+
+            show us normal sport at cright with dissolve
 
             'Такая реакция убеждает меня на все 100\%, что тут сговор.{w} Однако, чтобы доказать им их вранье, надо терпеть до конца и добиваться.'
 
             me "Один вопрос, Алиса, и я полезу.{w} Честно."
 
-            dv "Нет-нет.{w} Ты полезешь сейчас.{w} Либо ты не получишь свои 20\% как мы договаривались."
+            dv "Нет-нет.{w} Ты полезешь сейчас.{w} Либо ты не получишь свои 20\% как мы договаривались." with vpunch
 
             th "Сделать всю грязную работу за 20\%?{w} Когда они получат 40\%?!{w} С-справедливость."
 
@@ -376,20 +397,34 @@ label .search:
 
             dv "Эй, ты совсем уже?{w} Максимум 25, без разговора."
 
+            show us sad sport at cright with dissolve
+
             us "Тебе 35\% Алиса будет?"
+
+            show dv normal pioneer2 at cleft with dissolve
 
             "Алиса покачала головой, показав пальцем на Улю, мол, твои 35\%, мои — 40\%."
 
+            show us angry sport at cright with dissolve
+
             us "Не честно, совсем!"
+
+            show dv rage pioneer2 at cleft with dissolve
 
             dv "Честно!{w} Ты вообще ничего не сделала!" with hpunch
 
             "Во дела.{w} Хотел добиться правды, хотя бы справедливости, а получилась грызня.{w} Это даже интереснее фильма!"
 
+            scene black with fade
+            stop music fadeout 3
+
+
             "Пока две подруги отвлеклись друг на друга я, как тень, начал отступать в кусты."
 
             "В ходе этого я услышал подтверждение моим словами и, удовлетворенный, помчался к себе в домик."
+
             window hide dissolve
+
 
 
             play sound teleport fadein 2
@@ -399,17 +434,16 @@ label .search:
 
             play ambience ambience_camp_center_night fadein 3
 
-
             pause 2
 
             play music evnening_25 fadein 4
 
         "me" ((0.8,0.5)) if places[:3] and not places[4]:
             $ places.set_true(4)
-        #"Случай у входа":#+#
+            #"Случай у входа":#+#
 
 
-            "По началу пребывания в этом лагере, общение с Леной складывалось, скажем, не в лучшею сторону.{w} То случай на торжественной линейке, то куча косяков."
+            "По началу пребывания в этом лагере, общение с Леной складывалось, скажем, не в лучшую сторону.{w} То случай на торжественной линейке, то куча косяков..."
 
             "По воле случая девушка оказывалась где не нужно.{w} Вот почему мои шалости всегда доставали и злили её."
 
@@ -419,12 +453,13 @@ label .search:
             stop music fadeout 3
             play sound teleport
             $ renpy.pause (1)
-            scene bg int_dining_hall_day
+            scene bg int_dining_hall_people_day
             show screen tfyl_old_filter
             with flash
             play music music_list["everyday_theme"]
-            play ambience  ambience_medium_crowd_indoors_1 fadein 4
+            play ambience ambience_dining_hall_full fadein 4
             pause 1
+            $ tfyl.day_time()
             window show dissolve
 
             me "Ммм, какая нежная телятина под нежным соусом, с бокалом красного вина!"
@@ -435,8 +470,7 @@ label .search:
 
             "Запивать предлагалось чаем из пакетика.{w} Все это шло под закусь черного хлеба."
 
-            "Славяна смеялась, представляя картину наяву.{w} Соседние столы тоже подхватили, начав пародировать, правда, со своим акцентом."
-
+            "Славяна смеялась, представляя картину наяву.{w} Соседние столы тоже подхватили, начав пародировать{w}, правда, со своим акцентом."
 
             show sl laugh pioneer with dissolve
 
@@ -460,21 +494,21 @@ label .search:
 
             window hide dissolve
 
-            pause
+            pause .5
 
             show sl laugh pioneer with dissolve
 
-            pause
+            pause .5
 
             hide sl with dissolve
 
-            pause
+            pause .5
 
             window show dissolve
 
             "Она лишь хихикнула, не добавляя коментариев к моим словам.{w} Ну, правильно, к своим рукам вожатая относится адекватно.{w} А Славянушка является то ли правой, то ли левой."
 
-            show sl serious pioneer with dissolve
+            show sl sad pioneer with dissolve
 
             sl "Мне еще кушать и кушать.{w} Потом нужно сходить кое-куда.{w} Прости, но не могу с тобой."
 
@@ -482,13 +516,11 @@ label .search:
 
             window hide dissolve
 
-            $ renpy.pause(2,hard=True)
-
+            $ renpy.pause(1,hard=True)
 
             show sl smile2 pioneer with dissolve
 
-            $ renpy.pause(2,hard=True)
-
+            $ renpy.pause(1,hard=True)
 
             hide sl with dissolve
 
@@ -497,6 +529,8 @@ label .search:
             "Напоследок она одарила своей улыбкой и принялась за еду.{w} Семён тем временем встал, задвинул стул и бросился к моечному окну.{w} Прождав небольшую очередь, тот сразу устремился к выходу."
 
             "Приложив чересчур много сил к двери, та будто вылетела, потом громкий стук."
+
+            window hide dissolve
 
             stop ambience fadeout 3
 
@@ -507,12 +541,17 @@ label .search:
 
             scene black with fade
 
+            window show dissolve
+
             "Грохот,{w} крик,{w} слезы,{w} {i}оооох{/i},{w} вот почему надо открывать медленно, чтобы не убить никого!"
 
+            window hide dissolve
 
             scene ext_dining_hall_away_day with dissolve2
 
             play ambience ambience_camp_center_day fadein 3
+
+            window show dissolve
 
             "Семён тут же бросился помогать, шмыгнул за дверь, увидел девушку с фиолетовыми косичками.{w} Та лежала, не пытаясь даже встать, держалась за носик."
 

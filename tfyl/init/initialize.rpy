@@ -36,7 +36,9 @@ init python:
 
         def __call__(self):
 
-            renpy.jump(self.chapter)
+            # renpy.jump(self.chapter)
+
+            Start(self.chapter)()
 
     class ModeStore(object):
         """ Класс для хранения данных мода """
