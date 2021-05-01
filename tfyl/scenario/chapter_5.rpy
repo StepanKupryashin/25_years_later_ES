@@ -28,7 +28,7 @@ label .loads: # Все необходимое для пятой главы
 
 label tfyl_dining_hall:
 
-    show screen tfyl_backdrop(5, "{size=100}Друг или враг?{/size}", "images/bg/ext_house_of_mt_day.jpg",  im.Composite((630,1080), (0,0), "images/sprites/far/dv/dv_4_body.png",(0,0), "images/sprites/far/dv/dv_4_pioneer.png",(0,0), "images/sprites/far/dv/dv_4_smile.png") ) with fade
+    show screen tfyl_backdrop(5, "{size=100}Друг или враг?{/size}", "images/bg/ext_house_of_mt_day.jpg",  im.Composite((630,1080), (0,0), "images/sprites/far/mt/mt_1_body.png",(0,0), "images/sprites/far/mt/mt_1_pioneer.png",(0,0), "images/sprites/far/mt/mt_1_smile.png") ) with fade
     $ save_name = '25 лет спустя.\nГлава 5. Друг или враг?'
     $ renpy.pause (6)
     hide screen tfyl_backdrop
