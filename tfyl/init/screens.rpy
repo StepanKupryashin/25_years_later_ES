@@ -713,7 +713,7 @@ init: # Нужно запихнуть в screens
                     ypos 1.0
                     linear .5 ypos 0.0
 
-                button background None action (Show("tfyl_mail", None, mail, remove=True) if page >= maxpage else SetScreenVariable("page", page+1))
+                button background None action (Show("tfyl_mail", None, mail, remove=True) if page >= maxpage else (SetScreenVariable("page", page+1), Play("sound", list_open))
             else:
                 at transform:
                     ypos 0.0
@@ -824,7 +824,7 @@ label tfyl_index:
     window hide
 
     $ tfyl__screens_save_act()
-    
+
 
     return
     # call screen tfyl_to_main_menu
