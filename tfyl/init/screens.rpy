@@ -713,7 +713,7 @@ init: # Нужно запихнуть в screens
                     ypos 1.0
                     linear .5 ypos 0.0
 
-                button background None action (Show("tfyl_mail", None, mail, remove=True) if page >= maxpage else (SetScreenVariable("page", page+1), Play("sound", list_open))
+                button background None action (Show("tfyl_mail", None, mail, remove=True) if page >= maxpage else (SetScreenVariable("page", page+1), Play("sound", list_open)))
             else:
                 at transform:
                     ypos 0.0

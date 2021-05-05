@@ -2,7 +2,7 @@
 init python:
     mods["tfyl_index"] =  u"{font=fonts/timesi.ttf}{size=40}25 Лет Спустя{/size}{/font}"
 
-    tfyl_version = "0.21.05.04" # Версии менять тут
+    tfyl_version = "0.21.05.05" # Версии менять тут
     class tfyl_FunctionCallback(Action): # А чем оно отличается от стандартной Function?
         ''' этот класс используется для экрана сохранений '''
         def __init__(self,function,*arguments):
