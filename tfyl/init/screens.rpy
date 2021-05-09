@@ -204,6 +204,34 @@ init:
 
                     text "Глава 5: "+("Друг или враг?" if renpy.seen_label("tfyl_dining_hall") else "???")
 
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_library.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_6", "tfyl_library")
+
+                    text "Глава 6: "+("Предательство" if renpy.seen_label("tfyl_library") else "???")
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_beach.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_7", "tfyl_beach")
+
+                    text "Глава 7: "+("Последние слова?" if renpy.seen_label("tfyl_beach") else "???")
+
     screen tfyl_game_menu_selector:
         tag menu
         modal True
@@ -693,7 +721,7 @@ init:
 
 ####################################
 
-init: # Нужно запихнуть в screens
+init:
 
     screen tfyl_mail(mail=None, sender=None, remove=False):
 
