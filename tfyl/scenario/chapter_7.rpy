@@ -37,7 +37,7 @@ label .loads: # Все необходимое для пятой главы
 
 label tfyl_beach:
     show screen tfyl_backdrop(7, "{size=100}Последние слова{/size}", "images/bg/ext_beach_day.jpg",  im.Composite((630,1080), (0,0), "images/sprites/normal/dv/dv_4_body.png",(0,0), "images/sprites/normal/dv/dv_4_smile.png",(0,0), "images/sprites/normal/dv/dv_4_pioneer.png") ) with fade
-    $ save_name = '25 лет спустя.\nГлава 7. Последние слова?'
+    $ save_name = '25 лет спустя.\nГлава 7. Последние слова.'
     $ renpy.pause (6)
     hide screen tfyl_backdrop
 
@@ -205,7 +205,7 @@ label .search:
 
             me "О какой награде речь?"
 
-            "Не то чтобы я ждал награду, просто стало интересно.{w} И вообще у меня есть другая…{w} Надеюсь, там обычный подарок, не такой?.."
+            "Не то чтобы я ждал награду, просто стало интересно.{w} И, вообще, у меня есть другая…{w} Надеюсь, там обычный подарок, не такой?.."
 
             show dv grin pioneer2 with dspr
 
@@ -223,7 +223,7 @@ label .search:
 
             play ambience ambience_forest_night fadein 3
 
-            "Тропинки были были протоптаны, поэтому трудностей с походом не составило."
+            "Тропинки были протоптаны, поэтому трудностей с походом не составило."
 
 
             show dv shy pioneer2 with dissolve
@@ -232,7 +232,7 @@ label .search:
 
             "Этот вопрос смутил меня, обычно все, что касалось личной жизни отражались на мне как-то странно.{w} Но с Алиской я не хотел быть закрытым."
 
-            me "Да.{w} Вместе.{w} Вообще все сумбурно тогда вышло."
+            me "Да.{w} Вместе.{w} Вообще, все сумбурно тогда вышло."
 
             show dv smile pioneer2 with dspr
 
@@ -317,7 +317,7 @@ label .search:
 
             show dv normal pioneer2 with dspr
 
-            dv "Ох, Семён, много вопросов.{w} Хочу людям помогать, да и чувствую себя в этой роли.{w} А гитара как хобби, вряд ли я выйду на высокий уровень."
+            dv "Ох, Семён, много вопросов.{w} Хочу людям помогать, да и чувствую себя в этой роли.{w} А гитара, как хобби, вряд ли я выйду на высокий уровень."
 
             me "Выйдешь, куда денешься?{w} Хочешь, я помогу?"
 
@@ -355,7 +355,7 @@ label .search:
 
             "Ночью он преображался, здесь было не так жарко, пионеры отсутствовали.{w} Зато могли появиться вожатые, которым не позволено отдыхать днем."
 
-            "Правда сейчас мы их не опасались.{w} Было все равно, разгонят, так разгонят, все равно пара дней до конца."
+            "Правда, сейчас мы их не опасались.{w} Было все равно, разгонят, так разгонят, все равно пара дней до конца."
 
             "Немного побродив на границе воды и песка, мы нашли уютное местечко.{w} Плюхнулись туда и стали смотреть в сторону острова."
 
@@ -419,7 +419,7 @@ label .search:
                 linear 10.0 pos (0,0)
                 linear 2.0 pos (0, -250)
             window show dissolve
-            dv "Я тебе обещала награду, вот, сочинила кое-что.{w} Все не могла додумать где же показать тебе…{w} Ну, нашла, как видишь."
+            dv "Я тебе обещала награду, вот, сочинила кое-что.{w} Все не могла додумать, где же показать тебе…{w} Ну, нашла, как видишь."
 
             "Семён начал наблюдать за своей подругой.{w} Её плавные движения и танец, небольшие волны и брызги по сторонам.{w} Чем-то напоминало водяное шоу."
 
@@ -438,7 +438,7 @@ label .search:
             stop ambience fadeout 3
             stop music fadeout 5
 
-            "После такого маленького шоу она нежно разбудила меня и проводила до домика.{w} В ней не было дерзости, не было «балбеса», все, что в тот момент происходило, было искренним и добрым."
+            "После такого маленького шоу, она нежно разбудила меня и проводила до домика.{w} В ней не было дерзости, не было «балбеса», все, что в тот момент происходило, было искренним и добрым."
 
             "Это была настоящая Алиса, точнее, истинная.{w} Вряд ли кто-либо видел её такой."
 
@@ -460,7 +460,7 @@ label .search:
 
 
 
-        "me" ((0.3, 0.7)) if not places[1]: # + Последнее свидание +
+        "me" ((0.3, 0.7)) if not places[1] and places[0]: # + Последнее свидание +
 
 
             $ places.set_true(1)
@@ -554,14 +554,14 @@ label .search:
             window hide dissolve
             $ renpy.pause(2, hard=True)
             window show dissolve
-            "Я отпустил Лену и вместе с ней мы уселся на бревно.{w} Стало немного легче."
+            "Я отпустил Лену и вместе с ней мы уселись на бревно.{w} Стало немного легче."
 
 
             "Скоро еще выступления, нужно обязательно явиться туда с улыбкой, а то Мику не поймет.{w} Начнет полоскать мозги по поводу этого и сама заплачет."
 
             show un smile2 pioneer with dissolve
 
-            un "Кстати не забывай, что ночью мы собираемся всем отрядом на пляже.{w} Даже сама Ольга обещала явиться!"
+            un "Кстати, не забывай, что ночью мы собираемся всем отрядом на пляже.{w} Даже сама Ольга обещала явиться!"
 
             me "Да ну?{w} Ольга одобряет встречу после отбоя?!{w} Что-то новенькое."
 
@@ -643,7 +643,7 @@ label .search:
             window hide dissolve
 
 
-        "me" ((.78, .65)) if not places[2]: # + Последнее мероприятие +
+        "me" ((.78, .65)) if not places[2] and places[:2]: # + Последнее мероприятие +
 
 
             $ places.set_true(2)
@@ -670,7 +670,7 @@ label .search:
 
             "Она не отпускала мою руку, постоянно держась и согреваясь моим теплом."
 
-            th "Скоро я позабуду эти чувства, позабуду что такое близость и любовь.{w} Нет!{w} Нужно отвлечься, ведь это счастливый момент."
+            th "Скоро я позабуду эти чувства, позабуду, что такое близость и любовь.{w} Нет!{w} Нужно отвлечься, ведь это счастливый момент."
 
             th "Эмоциональный, но счастливый.{w} Если Лена увидит, что я грущу, она этого не простит."
 
@@ -781,7 +781,7 @@ label .search:
 
             dv "Ну вы это…{w} молодцы, конечно!{w} Мне б так!"
 
-            show us grin sport at left with dissolve
+            show us grin sport at fleft with dissolve
 
             us "Конечно молодцы…{w} А мне этот значок ГТО всучили, зачем он мне…"
 
@@ -879,15 +879,15 @@ label .search:
             "Но из-за отсутствия тепла, света, атмосфера казалось какой-то серой.{w} Единственное, что спасало, это разговоры моих подруг, которые я слушал и откладывал в голове."
 
 
-            show un smile swim far at fleft with dissolve
+            show un smile pioneer far at fleft with dissolve
 
             un "Ты же тут не все смены проводишь?"
 
-            show mi smile swim far at left with dissolve
+            show mi smile pioneer far at left with dissolve
 
             mi "Да.{w} Верно, Ленуся.{w} Но ты не переживай!{w} Пока меня нет, кружок возглавляют мои бывшие ученицы!"
 
-            show un shy swim far at fleft with dissolve
+            show un shy pioneer far at fleft with dissolve
 
             un "Даже так?!"
 
@@ -903,9 +903,9 @@ label .search:
 
             window hide dissolve
 
-            show dv normal swim far at fleft with dissolve
+            show dv normal pioneer far at fleft with dissolve
 
-            show us normal swim far at left with dissolve
+            show us normal pioneer far at left with dissolve
 
             $ renpy.pause(2,hard=True)
 
@@ -917,7 +917,7 @@ label .search:
             dv "А я хочу мороженое!{w} Ты целую смену травишь мне уши колесами, правами!"
 
             us "Так, а ты представь, как гоняться за тем же Семёном!{w} Весело будет! "
-            show us dontlike swim far at left with dspr
+            show us dontlike pioneer far at left with dspr
             extend  "Эй?! " with hpunch
             extend "Ты чего уставился?! " with hpunch
             extend " Не слушай!" with hpunch
@@ -944,11 +944,11 @@ label .search:
 
             "Я видел, как все ребята счастливы, не обращают внимание на завтрашний день, живя сегодняшним.{w} Хах, мне бы так, а то слишком переживаю."
 
-            show sl happy swim at cleft with dissolve
+            show sl happy pioneer at cleft with dissolve
 
             sl "Друзья!{w} Мы пришли!"
 
-            show mt angry swim at cright with dissolve
+            show mt angry pioneer at cright with dissolve
 
             mt "Не сидеть на холодном песку!{w} Что это за безобразие!" with hpunch
 
@@ -958,7 +958,7 @@ label .search:
             extend "Вожатая, не добавляя коментариев, протиснулась в круг и встала в центре."
 
             hide sl with dissolve
-            extend " Славяна последовала следом, оказавшись около меня."
+            extend " Славяна пошла следом, оказавшись около меня."
             window hide dissolve
 
             $ renpy.pause(2,hard=True)
@@ -970,11 +970,11 @@ label .search:
 
 
 
-            show mt normal swim at cright with dissolve
+            show mt normal pioneer at cright with dissolve
 
             mt "Завтра после обеда, зависит напрямую от автобусов, вы покинете лагерь.{w} А собрала я вас, потому что буду занята, даже попрощаться толком не успею."
 
-            show dv normal swim at cleft with dissolve
+            show dv normal pioneer at cleft with dissolve
 
             dv "Но вы же нас все время отводили.{w} Вожатые же не пересчитывают?.."
 
@@ -983,7 +983,7 @@ label .search:
 
             mt "Дай договорю, Алиса.{w} Вопросы после моих слов.{w} Хм…{w} Вы пойдете с другим отрядом под присмотром их вожатого.{w} Славяна все знает, она вас соберет и доведет до него."
 
-            show mi sad swim at right with dissolve
+            show mi sad pioneer at right with dissolve
 
             mi "То есть вы нас больше…{w} Не увидите?{w} Только не говорите «да»!"
             window hide dissolve
@@ -1018,7 +1018,7 @@ label .search:
 
             $ renpy.pause(2,hard=True)
 
-            show mt smile swim with dissolve
+            show mt smile pioneer with dissolve
             window show dissolve
             mt "Очень хорошо, что вы приедете.{w} Я буду ждать вас!{w} Но а сейчас, я бы хотела сказать немного про каждого."
 
@@ -1036,7 +1036,7 @@ label .search:
 
             mt "Алиса, хотя за многое тебя стоит ругать, но твоя изобретательность в разных аспектах во многом нам помогла.{w} Надеюсь, чем старше ты будешь, тем мудрее станешь!"
 
-            show dv grin swim at right with dissolve
+            show dv grin pioneer at right with dissolve
 
             dv "Мудрее?{w} Не смешите!{w} Мудрая Алиса, о, нет!{w} Никогда!"
             window hide dissolve
@@ -1046,12 +1046,12 @@ label .search:
             $ renpy.pause(1,hard=True)
 
             window show dissolve
-            "Однако Ольга упустила слова подруги, продолжив:"
+            "Однако, Ольга упустила слова подруги, продолжив:"
 
             mt "Ульяна, хоть ты оказалась в этом отряде совершенно случайно.{w} Твои спортивные заслуги среди взрослых показали, кто самый сильный средь нашего отряда."
 
 
-            show us calml swim at left with dissolve
+            show us calml pioneer at left with dissolve
 
             us "В каком плане «случайно»?!{w} Я не поняла!"
 
@@ -1063,7 +1063,7 @@ label .search:
 
             mt "Шурик и Электроник.{w} Думаю, не стоит перечислять сколько всего вы нам починили и подарили.{w} Однако, я все равно не разрешала лезть в электрический щиток!{w} Ох, для этого есть специалисты."
 
-            show mt normal swim with dspr
+            show mt normal pioneer with dspr
 
             mt "И остался ты, Семён, который выделился во всех направлениях.{w} Не забывай наш разговор, я буду ждать от тебя ответа.{w} и спасибо за свою «службу»."
 
@@ -1073,7 +1073,7 @@ label .search:
 
             "Я улыбнулся, ибо на меня смотрели все.{w} Нечего показывать свою обеспокоенность, иначе пойдут вопросы после которых я точно расколюсь.{w} Необходимо поспать, если, конечно, смогу с этим грузом…"
 
-            show mt smile swim with dissolve
+            show mt smile pioneer with dissolve
 
             mt "Все, ребят, я бы не отлипала от вас всю ночь, но вам необходимо поспать.{w} Завтра понадобятся силы на переезд.{w} Прошу, ради себя это сделайте."
 
@@ -1129,6 +1129,7 @@ label .search:
             window hide dissolve
             $ renpy.pause(2,hard=True)
             window show dissolve
+            play music fight_25 fadein 2
             "Окинув в последний раз это место я, немедля, бросился к домику Алисы"
             stop ambience fadeout 3
             scene bg tfyl_beach at tfyl_running
@@ -1145,7 +1146,6 @@ label .search:
 
             window show dissolve
             play ambience ambience_camp_entrance_night
-            play music music_list["afterword"] fadein 2
             'Ага, ушли, накаркал, Семен, на-кар-кал!{w} Уф, они похоже её нашли раньше меня, есть огромное желание выйти из кустов и встретиться с этим охламоном.'
 
             'Но перед этим понять, с кем я имею дело.{w} Потому подбежал ближе и выглянул из-за кустов.'
@@ -1204,8 +1204,9 @@ label .search:
             vasan 'Стоять!' with hpunch
             extend ' А ты еще кто? Её давний друг, который тут ошивался?!'
             scene bg tfyl_beach
-
+            stop music fadeout 3  
             play ambience ambience_boat_station_night fadein 2
+            play music Phobos_Base fadein 3 
             'Глаза сразу обратили внимание на их главаря, который стоял севернее пляжа, собственно, его небольшая банда окружила весь берег.{w} Единственный выход — вплавь.{w} Но вода… Она совсем не внушала доверия.'
 
             'Да и некуда плыть. Пришлось остановиться, наконец-то решить все сейчас!'
@@ -1337,9 +1338,11 @@ label .search:
             vasan 'О, игрушка твоей девочки, хах, пневмат, ссаный.{w} Ладно, ребят, тащите её сюда, кончать пора.'
 
             'Её подняли за руки и ноги, принесли ко мне и бросили рядом.{w} Алиса…{w} Из её носика до сих пор шла кровь, По лицу и рукам я заметил кучу гематом и шрамов, неужели она настолько терпела?!{w} Неужели, настолько посрать ментам?!'
-
+            stop music fadeout 4 
             'Она слабо дышала, в ней еще была жизнь…'
             extend 'Нужно…' with flash_red
+
+
 
             scene black with fade3
             extend '{cps=10}Нужно бороться, пока она ещ.. жи…ва…{/cps}' with flash_red
@@ -1347,9 +1350,8 @@ label .search:
             $ renpy.pause(2,hard=True)
             window show dissolve
             stop ambience fadeout 2
-            stop music fadeout 2
-            play music music_list["mystery_girl_v2"]
             'Сознание угасало, все, что я успел — дотянуться до теплой руки давней подруги, сжать её.{w} После чего провалился в бесконечную пустоту.'
+            play music music_list["lets_be_friends"] fadein 3 
 
             un 'Семен?'
 
@@ -1404,10 +1406,17 @@ label .search:
             'Теперь я ощущал всех из моего отряда, не считая Алису, она еще оставалась в том, суровом мире.{w} Одна, без меня…{w} Я должен спасти её, любой ценой!'
 
             'Но перед уходом у меня возник очевидный вопрос:'
+            hide us 
+            hide sh
+            hide mi
+            hide mt
+            hide sl 
+            with dissolve
 
             me 'Лена…{w} Я все изменю.{w} Я спасу Алису и мы восстановим лагерь.{w} Но… Увидимся ли мы еще?'
 
-            show un smile2 pioneer with dissolve
+            show un smile2 pioneer with dissolve:
+                linear 2 zoom 1.11
 
             un 'Всенепременно, мой милый…'
             window hide dissolve
@@ -1430,7 +1439,7 @@ label .search:
 
             'Он смотрел чуть выше меня, в общем-то туда все пялились.{w} Неизвестно что, но это их напугало.{w} Разбойники начали мигом покидать место, оставив меня наедине с Васей.'
 
-            vasan 'Т-ты… Призрак… Господи… Это точно призрак!{w} Он полностью похож на тебя!{w} Что ты за чертовщина? Ты человек?{w} А, сука?!{w} Наверное, за тебя много денег отвалят, мутант обосанный!'
+            vasan '{cps=15}Т-ты… Призрак… Господи…{/cps} {b}Это точно призрак!{/b}{w} Он полностью похож на тебя!{w} Что ты за чертовщина? Ты человек?{w} А, сука?!{w} Наверное, за тебя много денег отвалят, мутант обосанный!'
 
 
             play sound sfx_pat_shoulder_hard
@@ -1457,7 +1466,7 @@ label .search:
 
             play sound sfx_pat_shoulder_hard
             'Приложив все силы, я как следует впечатал ему в лицо, и повалил на землю. Тот даже не шевелился.'
-            play music music_list['farewell_to_the_past_edit'] fadein 2
+            play music music_list['farewell_to_the_past_edit'] fadein 6
             'После чего подбежал к Алисе, она только-только приходила в себя.'
 
             dv 'Семен, кх, это ты!{w} Как же хорошо, я-я думала это все…'
@@ -1611,14 +1620,18 @@ label .search:
             #todo - сделать credits
             stop ambience fadeout 3
             stop music fadeout 3
-            scene black with fade2
-            $ renpy.pause(3,hard=True)
-            show text "{font=mods/tfyl/fonts/Caveat.ttf}{size=170}Конец.{/size}{/font}" at truecenter
-            $ renpy.pause(4,hard=True)
+            play music latter_25 fadein 3 
+            
+
+            show screen tfyl_credits with fade 
+            
+            $ renpy.pause(40,hard=True)
+            hide screen tfyl_credits with fade
+            stop music fadeout 2
             #Сцена после титров:
+            $ tfyl.day_time()
             scene ext_square_day with dissolve2
             play ambience ambience_camp_center_day fadein 2
-            play music music_list["she_is_kind"] fadein 2
             window show dissolve
             'Я сидел прямо под Гендой, облокотившись о постамент.{w} День был жарким, но тень этого великого человека спасала меня. Все было прекрасно'
 
@@ -1648,10 +1661,11 @@ label .search:
 
             show lu shocked pioneer normal with dissolve
 
-            lu 'Причем тут год? Дядь? Зачем такие вопросы?! Сейчас же 1983!'
+            lu 'Причем тут год? Дядь? Зачем такие вопросы?! Сейчас же {b}{i}1983!{/i}{/b}'
 
             th '{cps=10}О, боже…{/cps}'
             window hide dissolve
+            $ persistent.tfyl_read = True
 
             jump tfyl_true_exit
     jump .search

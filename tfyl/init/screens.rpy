@@ -75,6 +75,9 @@ init:
             textbutton "Настройки" action ShowMenu('tfyl_preferences') at tfyl_button_hover
             textbutton "Выход" action ShowMenu("tfyl_exit") at tfyl_button_hover
 
+        if persistent.tfyl_read:
+            textbutton 'Демо Сестры' style 'tfyl_button' text_style 'tfyl_button_text' action Start('sister_start') xalign 0.9 yalign 0.9 at tfyl_button_hover
+
 
         add Solid("000"): # Заменяет fade
             at transform:
@@ -230,7 +233,7 @@ init:
 
                         action tfyl_LoadChapter("tfyl_chapter_7", "tfyl_beach")
 
-                    text "Глава 7: "+("Последние слова?" if renpy.seen_label("tfyl_beach") else "???")
+                    text "Глава 7: "+("Последние слова" if renpy.seen_label("tfyl_beach") else "???")
 
     screen tfyl_game_menu_selector:
         tag menu
@@ -264,7 +267,7 @@ init:
 
         text "Ты хочешь уйти?":
             size 100
-            style 'tfyl_button'
+            style 'tfyl_button_text'
             xalign 0.7
             yalign 0.33
 
@@ -528,35 +531,35 @@ init:
         use tfyl_menu_bg
         textbutton "Закрыть" style 'tfyl_button' text_style 'tfyl_button_text' xalign 0.5 action Return() at tfyl_button_hover
         vbox align (0.2,0.5):
-            text "Режим экрана" style 'tfyl_button' size 45 xalign 0.5
+            text "Режим экрана" style 'tfyl_button_text' size 45 xalign 0.5
             hbox spacing 10 xalign 0.5:
                 textbutton "Оконный" text_size 35 at tfyl_button_hover:
                     action Preference("display","window")
                 textbutton "Полноэкранный" text_size 35 at tfyl_button_hover:
                     action Preference("display","fullscreen")
             null height 40
-            text "Пропускать" style 'tfyl_button' size 45 xalign 0.5
+            text "Пропускать" style 'tfyl_button_text' size 45 xalign 0.5
             hbox spacing 10 xalign 0.5:
                 textbutton "Всё" text_size 35 at tfyl_button_hover:
                     action Preference("skip","all")
                 textbutton "Что увидел" text_size 35 at tfyl_button_hover:
                     action Preference("skip","seen")
             null height 40
-            text "Размер шрифта" style 'tfyl_button' size 45 xalign 0.5
+            text "Размер шрифта" style 'tfyl_button_text' size 45 xalign 0.5
             hbox spacing 10 xalign 0.5:
                 textbutton "Обычный" text_size 35 at tfyl_button_hover:
                     action SetField(persistent,"font_size","small")
                 textbutton "Большой" text_size 35 at tfyl_button_hover:
                     action SetField(persistent,"font_size","large")
             null height 40
-            text "Скорость текста" style 'tfyl_button' size 45 xalign 0.5
+            text "Скорость текста" style  'tfyl_button_text' size 45 xalign 0.5
             null height 10
             bar value Preference("text speed") xalign 0.5 maximum (442,42):
                 right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
                 left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
                 thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
         vbox align (0.8,0.5):
-            text "Автопереход" style 'tfyl_button'  size 45 xalign 0.5
+            text "Автопереход" style  'tfyl_button_text' size 45 xalign 0.5
             null height 10
             hbox spacing 10 xalign 0.5:
                 textbutton "Включить" text_size 35 at tfyl_button_hover:
@@ -568,21 +571,21 @@ init:
                 left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
                 thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
-            text "Музыка" style 'tfyl_button' size 45 xalign 0.5
+            text "Музыка" style 'tfyl_button_text' size 45 xalign 0.5
             null height 10
             bar value Preference("music volume") xalign 0.5 maximum (442,42):
                 right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
                 left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
                 thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
-            text "Звуки" style 'tfyl_button' size 45 xalign 0.5
+            text "Звуки" style  'tfyl_button_text' size 45 xalign 0.5
             null height 10
             bar value Preference("sound volume") xalign 0.5 maximum (442,42):
                 right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
                 left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
                 thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
-            text "Эмбиент" style 'tfyl_button' size 45 xalign 0.5
+            text "Эмбиент" style  'tfyl_button_text' size 45 xalign 0.5
             null height 10
             bar value Preference("voice volume") xalign 0.5 maximum (442,42):
                 right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
@@ -639,8 +642,8 @@ init:
         tag menu modal True
         add 'mods/tfyl/gui/yes_no/yesno_promt.png'
         text _(message) text_align 0.5 yalign 0.46 xalign 0.5 color "#FFFFFF" font 'mods/tfyl/fonts/Caveat.ttf' size 25
-        textbutton translation_new["Yes"] text_size 60 style "tfyl_button" text_style "tfyl_button"  yalign 0.65 xalign 0.3 action yes_action at tfyl_button_hover
-        textbutton translation_new["No"] text_size 60 style "tfyl_button" text_style "tfyl_button"  yalign 0.65 xalign 0.7 action Return() at tfyl_button_hover
+        textbutton translation_new["Yes"] text_size 60 style "tfyl_button" text_style "tfyl_button_text"  yalign 0.65 xalign 0.3 action yes_action at tfyl_button_hover
+        textbutton translation_new["No"] text_size 60 style "tfyl_button" text_style "tfyl_button_text"  yalign 0.65 xalign 0.7 action Return() at tfyl_button_hover
 
 
 
@@ -840,6 +843,34 @@ init:
 
                             ease .5 yalign .0
                             ease .3 xoffset -600
+
+
+screen tfyl_credits(speed=90):
+    tag tfyl 
+    modal False
+    use tfyl_menu_bg
+    frame:
+        xsize 1080
+        background Null()
+        vbox:
+            xalign 0.2
+            yalign 0.5
+            vbox:
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Кодеры:\n СТЕПАН4ик \n Mikansei no Senshu{/color}{/font}') size 60
+            vbox:
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Сценарист:\n Dark_crab{/color}{/font}') size 60
+
+            vbox:
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Благодарности:\n Fernando \n Помощь в фотошопе:\n frooty \n Когда-то участвовал в разработке: kamil.bogdalov {/color}{/font}') size 60 
+            vbox:
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Спасибо За прочтение!{/color}{/font}') size 120
+        at tfyl_for_titles(speed)
+    timer speed action Hide('tfyl_credits')
+
+transform tfyl_for_titles(speed):
+    ypos 1200
+    linear speed ypos -4200
+
 
 ####################################
 

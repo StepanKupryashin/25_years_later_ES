@@ -214,7 +214,7 @@ init python:
         if save_name.find(u'25 лет спустя') != -1:
             tfyl__screen_act()
     config.after_load_callbacks.append(tfyl__after_load_srceen)
-    def tfyl__screens_diact():
+    def tfyl__screens_diact(sister=False):
         try:
             config.window_title = u"Бесконечное лето"
             config.name = "Everlasting_Summer"
@@ -230,7 +230,8 @@ init python:
             renpy.music.stop("ambience")
             renpy.music.stop("music")
             renpy.music.stop("sound")
-            renpy.play(music_list["blow_with_the_fires"], channel = "music")
+            if sister == False:
+                renpy.play(music_list["blow_with_the_fires"], channel = "music")
         except:
             renpy.quit()
     def tfyl__screens_save_act():
@@ -251,9 +252,9 @@ init:
 
 
     #Персонажи (ого, здесь есть новые персы) p.s: пока без цветов...
-    $ vasan = Character(u'Васян', what_drop_shadow=[(2, 1),(2, 2)]) #думаю не надо обьяснять что это тень в конце указывается 
-    $ lu = Character(u'Луна', what_drop_shadow=[(2, 1),(2, 2)])#хехе, луна...
-    
+    $ vasan = Character(u'Васян', what_drop_shadow=[(2, 1),(2, 2)], color="#FF0000", what_color="#E2C778") #думаю не надо обьяснять что это тень в конце указывается 
+    $ lu = Character(u'Луна', what_drop_shadow=[(2, 1),(2, 2)], color="#00008B", what_color="#E2C778")#хехе, луна...
+    $ ada = Character(u"Ада", what_drop_shadow=[(2, 1),(2, 2)], color="#800080", what_color="#E2C778")#HELL
 
 
     ### Трансформация бега
