@@ -75,6 +75,9 @@ init:
             textbutton "Настройки" action ShowMenu('tfyl_preferences') at tfyl_button_hover
             textbutton "Выход" action ShowMenu("tfyl_exit") at tfyl_button_hover
 
+        if persistent.tfyl_read:
+            textbutton 'Демо Сестры' style 'tfyl_button' text_style 'tfyl_button_text' action Start('sister_start') xalign 0.9 yalign 0.9 at tfyl_button_hover
+
 
         add Solid("000"): # Заменяет fade
             at transform:
@@ -93,33 +96,144 @@ init:
         style_prefix 'tfyl'
         use tfyl_menu_bg
         textbutton 'Закрыть' action (Hide('tfyl_select_chapter', Dissolve(1.0)), Return()) style 'tfyl_button' text_style 'tfyl_button_text' xalign 0.5 at tfyl_button_hover
-        hbox spacing 40 align(0.5,0.5):
-            vbox spacing 10:
-                imagebutton  idle im.Scale('mods/tfyl/images/bg/tfyl_gates.jpg', 336, 196) at tfyl_button_hover:
-                    action Start('tfyl_gates')
-                text 'Глава 1. Искра'
-            vbox spacing 10:
-                imagebutton  idle im.Scale('mods/tfyl/images/bg/ext_tfyl_musclub.png', 336, 196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[0]:
-                        action Start('tfyl_stage')
-                    else:
-                        action NullAction()
-                text '2 глава. Струны и косы'
-            vbox spacing 10:
-                imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_polyana.png', 336, 196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[1]:
-                        action Start('tfyl_polyana')
-                    else:
-                        action NullAction()
-                text 'Глава 3. Бесконечная игра'
-            vbox spacing 10:
-                imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_boat_stantion.png', 336,196) at tfyl_button_hover:
-                    if persistent.tfyl_read_chapter[2]:
-                        action Start('tfyl_square')
-                    else:
-                        action NullAction()
-                text 'Глава 4. Экспедиция в один конец'
+        # hbox spacing 40 align(0.5,0.5):
+        #     vbox spacing 10:
+        #         imagebutton  idle im.Scale('mods/tfyl/images/bg/tfyl_gates.jpg', 336, 196) at tfyl_button_hover:
+        #             action Start('tfyl_gates')
+        #         text 'Глава 1. Искра'
+        #     vbox spacing 10:
+        #         imagebutton  idle im.Scale('mods/tfyl/images/bg/ext_tfyl_musclub.png', 336, 196) at tfyl_button_hover:
+        #             if persistent.tfyl_read_chapter[0]:
+        #                 action Start('tfyl_stage')
+        #             else:
+        #                 action NullAction()
+        #         text '2 глава. Струны и косы'
+        #     vbox spacing 10:
+        #         imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_polyana.png', 336, 196) at tfyl_button_hover:
+        #             if persistent.tfyl_read_chapter[1]:
+        #                 action Start('tfyl_polyana')
+        #             else:
+        #                 action NullAction()
+        #         text 'Глава 3. Бесконечная игра'
+        #     vbox spacing 10:
+        #         imagebutton idle im.Scale('mods/tfyl/images/bg/tfyl_boat_stantion.png', 336,196) at tfyl_button_hover:
+        #             if persistent.tfyl_read_chapter[2]:
+        #                 action Start('tfyl_square')
+        #             else:
+        #                 action NullAction()
+        #         text 'Глава 4. Экспедиция в один конец'
 
+        vbox:
+            align (.5, .5)
+
+            spacing 40
+
+            hbox: # Все главы на одной строке не смогут поместится
+
+                spacing 40
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_gates.jpg", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_1", "tfyl_gates")
+
+                    text "Глава 1: "+("Искра" if renpy.seen_label("tfyl_gates") else "???")
+
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/ext_tfyl_musclub.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_2", "tfyl_stage")
+
+                    text "Глава 2: "+("Струны и косы" if renpy.seen_label("tfyl_stage") else "???")
+
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_polyana.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_3", "tfyl_polyana")
+
+                    text "Глава 3: "+("Бесконечная игра" if renpy.seen_label("tfyl_polyana") else "???")
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_boat_stantion.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_4", "tfyl_polyana")
+
+                    text "Глава 4: "+("Экспедиция в один конец" if renpy.seen_label("tfyl_polyana") else "???")
+
+            hbox:
+                spacing 40
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_house_of_mt.jpg", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_5", "tfyl_dining_hall")
+
+                    text "Глава 5: "+("Друг или враг?" if renpy.seen_label("tfyl_dining_hall") else "???")
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_library.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_6", "tfyl_library")
+
+                    text "Глава 6: "+("Предательство" if renpy.seen_label("tfyl_library") else "???")
+
+                vbox:
+                    spacing 10
+
+                    imagebutton:
+
+                        idle im.Scale("mods/tfyl/images/bg/tfyl_beach.png", 336, 196)
+                        insensitive_foreground Solid("000C", width=336, height=196)
+
+                        at tfyl_button_hover
+
+                        action tfyl_LoadChapter("tfyl_chapter_7", "tfyl_beach")
+
+                    text "Глава 7: "+("Последние слова" if renpy.seen_label("tfyl_beach") else "???")
 
     screen tfyl_game_menu_selector:
         tag menu
@@ -153,7 +267,7 @@ init:
 
         text "Ты хочешь уйти?":
             size 100
-            style 'tfyl_button'
+            style 'tfyl_button_text'
             xalign 0.7
             yalign 0.33
 
@@ -189,7 +303,7 @@ init:
 
             if persistent.font_size == "large":
 
-                imagebutton auto "mods/tfyl/gui/dialogue_box/backward_%s.png" xpos 38 ypos 924 action ShowMenu("text_history")
+                imagebutton auto "mods/tfyl/gui/dialogue_box/backward_%s.png" xpos 38 ypos 924 action ShowMenu("text_history") #TODO Давай все такие подвинем эти кнопки повыше?
 
                 add "mods/tfyl/gui/dialogue_box/dialogue_box_large.png" xpos 174 ypos 866
 
@@ -417,35 +531,35 @@ init:
         use tfyl_menu_bg
         textbutton "Закрыть" style 'tfyl_button' text_style 'tfyl_button_text' xalign 0.5 action Return() at tfyl_button_hover
         vbox align (0.2,0.5):
-            text "Режим экрана" style 'tfyl_button' size 45 xalign 0.5
+            text "Режим экрана" style 'tfyl_button_text' size 45 xalign 0.5
             hbox spacing 10 xalign 0.5:
                 textbutton "Оконный" text_size 35 at tfyl_button_hover:
                     action Preference("display","window")
                 textbutton "Полноэкранный" text_size 35 at tfyl_button_hover:
                     action Preference("display","fullscreen")
             null height 40
-            text "Пропускать" style 'tfyl_button' size 45 xalign 0.5
+            text "Пропускать" style 'tfyl_button_text' size 45 xalign 0.5
             hbox spacing 10 xalign 0.5:
                 textbutton "Всё" text_size 35 at tfyl_button_hover:
                     action Preference("skip","all")
                 textbutton "Что увидел" text_size 35 at tfyl_button_hover:
                     action Preference("skip","seen")
             null height 40
-            text "Размер шрифта" style 'tfyl_button' size 45 xalign 0.5
+            text "Размер шрифта" style 'tfyl_button_text' size 45 xalign 0.5
             hbox spacing 10 xalign 0.5:
                 textbutton "Обычный" text_size 35 at tfyl_button_hover:
                     action SetField(persistent,"font_size","small")
                 textbutton "Большой" text_size 35 at tfyl_button_hover:
                     action SetField(persistent,"font_size","large")
             null height 40
-            text "Скорость текста" style 'tfyl_button' size 45 xalign 0.5
+            text "Скорость текста" style  'tfyl_button_text' size 45 xalign 0.5
             null height 10
             bar value Preference("text speed") xalign 0.5 maximum (442,42):
                 right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
                 left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
                 thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
         vbox align (0.8,0.5):
-            text "Автопереход" style 'tfyl_button'  size 45 xalign 0.5
+            text "Автопереход" style  'tfyl_button_text' size 45 xalign 0.5
             null height 10
             hbox spacing 10 xalign 0.5:
                 textbutton "Включить" text_size 35 at tfyl_button_hover:
@@ -457,21 +571,21 @@ init:
                 left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
                 thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
-            text "Музыка" style 'tfyl_button' size 45 xalign 0.5
+            text "Музыка" style 'tfyl_button_text' size 45 xalign 0.5
             null height 10
             bar value Preference("music volume") xalign 0.5 maximum (442,42):
                 right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
                 left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
                 thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
-            text "Звуки" style 'tfyl_button' size 45 xalign 0.5
+            text "Звуки" style  'tfyl_button_text' size 45 xalign 0.5
             null height 10
             bar value Preference("sound volume") xalign 0.5 maximum (442,42):
                 right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
                 left_bar im.Scale('mods/tfyl/gui/preferences/bar_2.png', 442, 42)
                 thumb im.Scale('mods/tfyl/gui/preferences/thumb.png', 15, 46)
             null height 40
-            text "Эмбиент" style 'tfyl_button' size 45 xalign 0.5
+            text "Эмбиент" style  'tfyl_button_text' size 45 xalign 0.5
             null height 10
             bar value Preference("voice volume") xalign 0.5 maximum (442,42):
                 right_bar im.Scale('mods/tfyl/gui/preferences/bar_1.png', 442, 42)
@@ -528,8 +642,8 @@ init:
         tag menu modal True
         add 'mods/tfyl/gui/yes_no/yesno_promt.png'
         text _(message) text_align 0.5 yalign 0.46 xalign 0.5 color "#FFFFFF" font 'mods/tfyl/fonts/Caveat.ttf' size 25
-        textbutton translation_new["Yes"] text_size 60 style "tfyl_button" text_style "tfyl_button"  yalign 0.65 xalign 0.3 action yes_action at tfyl_button_hover
-        textbutton translation_new["No"] text_size 60 style "tfyl_button" text_style "tfyl_button"  yalign 0.65 xalign 0.7 action Return() at tfyl_button_hover
+        textbutton translation_new["Yes"] text_size 60 style "tfyl_button" text_style "tfyl_button_text"  yalign 0.65 xalign 0.3 action yes_action at tfyl_button_hover
+        textbutton translation_new["No"] text_size 60 style "tfyl_button" text_style "tfyl_button_text"  yalign 0.65 xalign 0.7 action Return() at tfyl_button_hover
 
 
 
@@ -610,13 +724,13 @@ init:
 
 ####################################
 
-init: # Нужно запихнуть в screens
+init:
 
     screen tfyl_mail(mail=None, sender=None, remove=False):
 
         modal True
 
-        default page = 0
+        default page = -1 if remove else 0
         default maxpage = 0
 
         if mail:
@@ -630,7 +744,7 @@ init: # Нужно запихнуть в screens
                     ypos 1.0
                     linear .5 ypos 0.0
 
-                button background None action (Show("tfyl_mail", None, mail, remove=True) if page >= maxpage else SetScreenVariable("page", page+1))
+                button background None action (Show("tfyl_mail", None, mail, remove=True) if page >= maxpage else (SetScreenVariable("page", page+1), Play("sound", list_open)))
             else:
                 at transform:
                     ypos 0.0
@@ -729,6 +843,34 @@ init: # Нужно запихнуть в screens
 
                             ease .5 yalign .0
                             ease .3 xoffset -600
+
+
+screen tfyl_credits(speed=90):
+    tag tfyl 
+    modal False
+    use tfyl_menu_bg
+    frame:
+        xsize 1080
+        background Null()
+        vbox:
+            xalign 0.2
+            yalign 0.5
+            vbox:
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Кодеры:\n СТЕПАН4ик \n Mikansei no Senshu{/color}{/font}') size 60
+            vbox:
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Сценарист:\n Dark_crab{/color}{/font}') size 60
+
+            vbox:
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Благодарности:\n Fernando \n Помощь в фотошопе:\n frooty \n Когда-то участвовал в разработке: kamil.bogdalov {/color}{/font}') size 60 
+            vbox:
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Спасибо За прочтение!{/color}{/font}') size 120
+        at tfyl_for_titles(speed)
+    timer 40 action Hide('tfyl_credits')
+
+transform tfyl_for_titles(speed):
+    ypos 1200
+    linear speed ypos -4200
+
 
 ####################################
 

@@ -2,14 +2,44 @@
 init python:
     mods["tfyl_index"] =  u"{font=fonts/timesi.ttf}{size=40}25 Лет Спустя{/size}{/font}"
 
-    tfyl_version = "0.21.04.15" # Версии менять тут
-    class tfyl_FunctionCallback(Action):
+    tfyl_version = "0.21.05.05" # Версии менять тут
+    class tfyl_FunctionCallback(Action): # А чем оно отличается от стандартной Function?
         ''' этот класс используется для экрана сохранений '''
         def __init__(self,function,*arguments):
             self.function=function
             self.arguments=arguments
         def __call__(self):
             return self.function(self.arguments)
+
+    class tfyl_LoadChapter(Action):
+        """ Этот класс используется для загрузки
+            глав, и определению были ли прочитаны прошлые главы.
+        """
+        def __init__(self, chapter, label):
+            """
+            chapter - название главы инициализации
+            label - название первого лейбла главы
+            """
+            self.chapter = chapter
+            self.label = label
+
+        def __eq__(self, other):
+
+            if other.__class__ != tfyl_LoadChapter:
+                return False
+
+            return self.chapter == other.chapter
+
+        def get_sensitive(self):
+
+            return renpy.seen_label(self.label)
+
+        def __call__(self):
+
+            # renpy.jump(self.chapter)
+
+            Start(self.chapter)()
+
     class ModeStore(object):
         """ Класс для хранения данных мода """
 
@@ -27,9 +57,7 @@ init python:
             self.__dict__.update(self.is_persistent)
             self.timeofday = "day"
 
-            self.mails = {} #{"Письмо №"+str(i): ("nya "+str(i),) for i in range(10)}
-
-            #self.add_mail("Интро", "nya 1", "nya 2")
+            self.mails = {}
 
         def __setattr__(self, key, value):
             self.__dict__[key] = value
@@ -76,7 +104,6 @@ init python:
             self.mails[name] = pages
 
             return pages
-
 
     class BooleanList(object):
 
@@ -187,7 +214,7 @@ init python:
         if save_name.find(u'25 лет спустя') != -1:
             tfyl__screen_act()
     config.after_load_callbacks.append(tfyl__after_load_srceen)
-    def tfyl__screens_diact():
+    def tfyl__screens_diact(sister=False):
         try:
             config.window_title = u"Бесконечное лето"
             config.name = "Everlasting_Summer"
@@ -203,7 +230,8 @@ init python:
             renpy.music.stop("ambience")
             renpy.music.stop("music")
             renpy.music.stop("sound")
-            renpy.play(music_list["blow_with_the_fires"], channel = "music")
+            if sister == False:
+                renpy.play(music_list["blow_with_the_fires"], channel = "music")
         except:
             renpy.quit()
     def tfyl__screens_save_act():
@@ -222,6 +250,13 @@ init python:
 
 init:
 
+
+    #Персонажи (ого, здесь есть новые персы) p.s: пока без цветов...
+    $ vasan = Character(u'Васян', what_drop_shadow=[(2, 1),(2, 2)], color="#FF0000", what_color="#E2C778") #думаю не надо обьяснять что это тень в конце указывается 
+    $ lu = Character(u'Луна', what_drop_shadow=[(2, 1),(2, 2)], color="#00008B", what_color="#E2C778")#хехе, луна...
+    $ ada = Character(u"Ада", what_drop_shadow=[(2, 1),(2, 2)], color="#800080", what_color="#E2C778")#HELL
+
+
     ### Трансформация бега
     transform tfyl_running():
         anchor (0.0, 0.0) pos (0.0, 0.0)
@@ -230,10 +265,7 @@ init:
         linear 0.1 pos (6, -5)
         linear 0.1 pos (0, 0)
         repeat
-
-    default tfyl = None # В теории пофиксит баг с тем что пропадает значение.
-
-init python:
-
-    if persistent.tfyl_read_chapter == None:
-        persistent.tfyl_read_chapter = [False, False, False, False, False, False, False]
+# init python:
+#
+#     if persistent.tfyl_read_chapter == None:
+#         persistent.tfyl_read_chapter = [False, False, False, False, False, False, False]
