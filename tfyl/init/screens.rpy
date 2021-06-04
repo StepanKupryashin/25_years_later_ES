@@ -846,7 +846,7 @@ init:
 
 
 screen tfyl_credits(speed=90):
-    tag tfyl 
+    tag tfyl
     modal False
     use tfyl_menu_bg
     frame:
@@ -856,12 +856,12 @@ screen tfyl_credits(speed=90):
             xalign 0.2
             yalign 0.5
             vbox:
-                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Кодеры:\n СТЕПАН4ик \n Mikansei no Senshu{/color}{/font}') size 60
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Кодеры:\n СТЕПАН4ик \n Mikansei no Senshu (Mikan){/color}{/font}') size 60
             vbox:
                 text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Сценарист:\n Dark_crab{/color}{/font}') size 60
 
             vbox:
-                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Благодарности:\n Fernando \n Помощь в фотошопе:\n frooty \n Когда-то участвовал в разработке: kamil.bogdalov {/color}{/font}') size 60 
+                text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Благодарности:\n Fernando \n Помощь в фотошопе:\n frooty \n Когда-то участвовал в разработке: kamil.bogdalov {/color}{/font}') size 60
             vbox:
                 text _('{font=mods/tfyl/fonts/Caveat.ttf}{color=#666565}Спасибо За прочтение!{/color}{/font}') size 120
         at tfyl_for_titles(speed)

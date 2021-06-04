@@ -2,7 +2,7 @@
 init python:
     mods["tfyl_index"] =  u"{font=fonts/timesi.ttf}{size=40}25 Лет Спустя{/size}{/font}"
 
-    tfyl_version = "0.21.05.05" # Версии менять тут
+    tfyl_version = "1.21.06.04" # Версии менять тут
     class tfyl_FunctionCallback(Action): # А чем оно отличается от стандартной Function?
         ''' этот класс используется для экрана сохранений '''
         def __init__(self,function,*arguments):
@@ -133,44 +133,44 @@ init python:
 
             return False if False in self.__list__[i : j or self.__size__] else True
 
-    def make_sprite_timed(image):
-        return ConditionSwitch(
-            "persistent.sprite_time == 'sunset'",
-            im.MatrixColor(
-                image,
-                im.matrix.tint(0.94, 0.82, 1.0) # При свете дня...
-            ),
-            "persistent.sprite_time == 'night'",
-            im.MatrixColor(
-                image,
-                im.matrix.tint(0.63, 0.78, 0.82) # Во тьме ночной...
-            ),
-            True, # Но на случаи когда ни туда ни сюда, выходит обычное изображение
-            image
-        )
-
-
-    for file in renpy.list_files(): # Что, новомодное объявление файлов хотите? Ну смотрите, даже разьясню что это за бублик
-        if "tfyl" in file: # Проверяет от нашего ли мода этот файл
-            file_name = os.path.splitext(os.path.basename(file))[0] # Достаем имя файла
-
-            if file.endswith((".png", ".jpg", ".webp")): # Фильтр на изображения
-
-                if "sprites" in file and  not "composite" in file: # Если он в директории спрайтов, то по красоте с матрицой добавляет спрайт # За исключением компонентных спрайтов, они будут обьявлены дальше
-                    renpy.image( # По факту, так же обьявляет изображение, но реализуемо подругому. Не забудьте использовать bg cg и подобную херотеть в названии папок
-                        file_name.replace("_", " "), # имя по которому будем обращаться
-                        make_sprite_timed(file)
-                    )
-                elif "images/intro" in file:
-                    renpy.image("intro_mail_"+file_name.replace("_", " "),  # Письмо вот так обьявляется
-                        im.Scale(file, 1920, 1080),
-                        )
-                elif not "gui" in file: # Компоненты меню обьявляются в самом меню
-                    renpy.image(file.split("/")[-2]+" "+file_name,  # Ну а обычные ваши фончики фоточки обьявляются вот так
-                        file,
-                        )
-            elif file.endswith((".wav", ".mp2", ".mp3", ".ogg", ".opus")): # Если хотите потусить под музычку
-                globals()[file_name] = file # Разьяснения нужны?
+    # def make_sprite_timed(image): # больше не нужно
+    #     return ConditionSwitch(
+    #         "persistent.sprite_time == 'sunset'",
+    #         im.MatrixColor(
+    #             image,
+    #             im.matrix.tint(0.94, 0.82, 1.0) # При свете дня...
+    #         ),
+    #         "persistent.sprite_time == 'night'",
+    #         im.MatrixColor(
+    #             image,
+    #             im.matrix.tint(0.63, 0.78, 0.82) # Во тьме ночной...
+    #         ),
+    #         True, # Но на случаи когда ни туда ни сюда, выходит обычное изображение
+    #         image
+    #     )
+    #
+    #
+    # for file in renpy.list_files(): # Что, новомодное объявление файлов хотите? Ну смотрите, даже разьясню что это за бублик
+    #     if "tfyl" in file: # Проверяет от нашего ли мода этот файл
+    #         file_name = os.path.splitext(os.path.basename(file))[0] # Достаем имя файла
+    #
+    #         if file.endswith((".png", ".jpg", ".webp")): # Фильтр на изображения
+    #
+    #             if "sprites" in file and  not "composite" in file: # Если он в директории спрайтов, то по красоте с матрицой добавляет спрайт # За исключением компонентных спрайтов, они будут обьявлены дальше
+    #                 renpy.image( # По факту, так же обьявляет изображение, но реализуемо подругому. Не забудьте использовать bg cg и подобную херотеть в названии папок
+    #                     file_name.replace("_", " "), # имя по которому будем обращаться
+    #                     make_sprite_timed(file)
+    #                 )
+    #             elif "images/intro" in file:
+    #                 renpy.image("intro_mail_"+file_name.replace("_", " "),  # Письмо вот так обьявляется
+    #                     im.Scale(file, 1920, 1080),
+    #                     )
+    #             elif not "gui" in file: # Компоненты меню обьявляются в самом меню
+    #                 renpy.image(file.split("/")[-2]+" "+file_name,  # Ну а обычные ваши фончики фоточки обьявляются вот так
+    #                     file,
+    #                     )
+    #         elif file.endswith((".wav", ".mp2", ".mp3", ".ogg", ".opus")): # Если хотите потусить под музычку
+    #             globals()[file_name] = file # Разьяснения нужны?
 
 # добавлю своих функций для замены экранов
     def tfyl_on_load_callback(slot):
@@ -191,7 +191,7 @@ init python:
         for name in ["game_menu_selector","say", 'main_menu', 'quit','preferences', 'save', 'yesno_prompt', 'load']:
             renpy.display.screen.screens[("tfyl_old_"+name, None)] = renpy.display.screen.screens[(name, None)]
     def tfyl__screen_act():
-        config.window_title = u"25 лет спустя Beta"
+        config.window_title = u"25 лет спустя"
         config.name = "tfyl"
         config.version = tfyl_version
         save_name = '25 лет спустя'
@@ -252,7 +252,7 @@ init:
 
 
     #Персонажи (ого, здесь есть новые персы) p.s: пока без цветов...
-    $ vasan = Character(u'Васян', what_drop_shadow=[(2, 1),(2, 2)], color="#FF0000", what_color="#E2C778") #думаю не надо обьяснять что это тень в конце указывается 
+    $ vasan = Character(u'Васян', what_drop_shadow=[(2, 1),(2, 2)], color="#FF0000", what_color="#E2C778") #думаю не надо обьяснять что это тень в конце указывается
     $ lu = Character(u'Луна', what_drop_shadow=[(2, 1),(2, 2)], color="#00008B", what_color="#E2C778")#хехе, луна...
     $ ada = Character(u"Ада", what_drop_shadow=[(2, 1),(2, 2)], color="#800080", what_color="#E2C778")#HELL
 
